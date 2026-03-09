@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
 	import type { PageProps } from './$types';
 
@@ -10,6 +11,9 @@
 
 {#if data.user}
 	<p>Logged in as {data.user.username}</p>
+	<form use:enhance method="post" action="/auth/logout">
+		<button type="submit">Logout</button>
+	</form>
 {:else}
 	<p>You are not logged in.</p>
 	<a href={resolve('/auth/login')}>Login</a>
