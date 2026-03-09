@@ -19,9 +19,9 @@
 				<a class="text-xl font-bold" href={resolve('/')}>gMarket</a>
 			</AppBar.Lead>
 			<AppBar.Headline class="flex justify-center">
-				<form class="w-full" use:enhance method="post" action="/search">
+				<form class="w-full" use:enhance method="get" action="/search">
 					<div class="input-group grid-cols-[1fr_auto]">
-						<input class="ig-input" type="text" name="q" placeholder="Search..." />
+						<input class="ig-input" type="text" name="q" placeholder="Search..." value={data.query} />
 						<button class="ig-btn preset-filled" type="submit">
 							<SearchIcon size={16} />
 						</button>
