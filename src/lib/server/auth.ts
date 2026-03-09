@@ -35,10 +35,7 @@ export async function validateSession(token: string): Promise<SessionValidationR
 		.innerJoin(users, eq(sessions.user_id, users.id))
 		.where(eq(sessions.id, sessionId));
 
-	console.log('Auth: validateSession: Query result for token', token, ':', result);
-
 	if (result.length < 1) {
-		console.log('Auth: No session found for token:', token);
 		return { session: null, user: null };
 	}
 
