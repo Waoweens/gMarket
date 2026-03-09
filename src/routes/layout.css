@@ -8,7 +8,7 @@
 @import '@skeletonlabs/skeleton-svelte';
 @import '@skeletonlabs/skeleton/themes/cerberus';
 
-@custom-variant dark (&:where(.dark, .dark *));
+/* @custom-variant dark (&:where(.dark, .dark *)); */
 
 [data-theme='cerberus'] {
 	--heading-font-family: 'IBM Plex Sans', sans-serif;
