@@ -40,8 +40,8 @@ export async function validateSession(token: string): Promise<SessionValidationR
 	}
 
 	const { user, session } = result[0];
-	if (Date.now() >= session.expires_at.getTime() - 1000 * 60 * 60 * 24 * 15) {
-		session.expires_at = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30);
+	if (Date.now() >= session.expires_at.getTime() - 1000 * 60 * 60 * 24 * 15) { // 15 days
+		session.expires_at = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30); // 30 days
 		await db
 			.update(sessions)
 			.set({ expires_at: session.expires_at })
