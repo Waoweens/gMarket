@@ -22,7 +22,7 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 <div class="flex flex-col w-full min-h-screen items-center">
-	<header class="w-full sticky top-0 z-50">
+	<header class="w-full sticky top-0 z-10">
 		<AppBar>
 			<AppBar.Toolbar class="grid-cols-[auto_1fr_auto]">
 				<AppBar.Lead class="pr-2 pl-2">
@@ -51,7 +51,7 @@
 								<span><ShoppingCartIcon /></span>
 							</Menu.Trigger>
 							<Portal>
-								<Menu.Positioner>
+								<Menu.Positioner class="z-20!">
 									<Menu.Content></Menu.Content>
 								</Menu.Positioner>
 							</Portal>
@@ -61,7 +61,7 @@
 								<span><BellIcon /></span>
 							</Menu.Trigger>
 							<Portal>
-								<Menu.Positioner>
+								<Menu.Positioner class="z-20!">
 									<Menu.Content></Menu.Content>
 								</Menu.Positioner>
 							</Portal>
@@ -71,7 +71,7 @@
 								<span><MailIcon /></span>
 							</Menu.Trigger>
 							<Portal>
-								<Menu.Positioner>
+								<Menu.Positioner class="z-20!">
 									<Menu.Content></Menu.Content>
 								</Menu.Positioner>
 							</Portal>
@@ -82,7 +82,7 @@
 								<span class="">{data.user.username}</span>
 							</Menu.Trigger>
 							<Portal>
-								<Menu.Positioner>
+								<Menu.Positioner class="z-20!">
 									<Menu.Content>
 										<Menu.Item value="test">
 											{#snippet element(attributes)}
