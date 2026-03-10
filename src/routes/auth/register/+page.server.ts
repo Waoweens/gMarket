@@ -49,6 +49,6 @@ export const actions = {
 		const session = await createSession(token, userId);
 		setSessionTokenCookie(cookies, token, session.expiresAt);
 
-		return redirect(302, "/auth/redirect-root");
+		return redirect(302, `/@${username}/edit`);
 	}
 } satisfies Actions;
