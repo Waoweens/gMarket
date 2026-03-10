@@ -2,8 +2,6 @@
 	let { children } = $props()
 </script>
 
-<div class="h-full flex justify-center items-center">
-	<section class="w-96 p-10">
-		{@render children()}
-	</section>
-</div>
+<section class="h-full flex justify-center items-center w-full max-w-110 p-10">
+	{@render children()}
+</section>

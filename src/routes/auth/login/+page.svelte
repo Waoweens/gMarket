@@ -3,20 +3,25 @@
 	import type { PageProps } from "./$types";
 	
 	let { form }: PageProps = $props();
-
 </script>
 
-<form use:enhance method="post" class="flex flex-col">
+<form use:enhance method="post" class="flex flex-col items-center gap-4">
+	<h2 class="h2">Log in</h2>
 
-	<label for="username">Username:</label>
-	<input type="text" autocomplete="username" id="username" name="username" value={form?.username ?? ''} required />
-
-	<label for="password">Password:</label>
-	<input type="password" autocomplete="current-password" id="password" name="password" required />
+	<fieldset class="flex flex-col items-center gap-4">
+		<label class="label">
+			<span class="label-text">Username:</span>
+			<input class="input" type="text" autocomplete="username" name="username" value={form?.username ?? ''} required />
+		</label>
+		<label class="label">
+			<span class="label-text">Password:</span>
+			<input class="input" type="password" autocomplete="current-password" name="password" required />
+		</label>
+		<button class="btn preset-filled w-full" type="submit">Log in</button>
+	</fieldset>
 
 	{#if form?.error}
 		<p class="text-red-500">{form.error}</p>
 	{/if}
 
-	<button type="submit">Login</button>
 </form>

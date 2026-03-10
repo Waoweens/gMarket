@@ -18,6 +18,10 @@ export const actions = {
 			return fail(400, { username, error: 'All fields are required.' });
 		}
 
+		if (!/^[a-z][a-z0-9._]{2,19}$/.test(username)) {
+			return fail(400, { username, error: 'Username must be 3-20 characters, start with a letter, and can only contain lowercase letters, numbers, underscores, and periods.' });
+		}
+
 		if (password !== confirmPassword) {
 			return fail(400, { username, error: 'Passwords do not match.' });
 		}
