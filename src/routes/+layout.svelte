@@ -21,7 +21,7 @@
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-<div class="flex flex-col w-full min-h-screen">
+<div class="flex flex-col w-full min-h-screen items-center">
 	<header class="w-full sticky top-0 z-50">
 		<AppBar>
 			<AppBar.Toolbar class="grid-cols-[auto_1fr_auto]">
@@ -120,7 +120,7 @@
 			</AppBar.Toolbar>
 		</AppBar>
 	</header>
-	<main class="w-full grow">
+	<main class="w-full max-w-6xl grow">
 		{@render children()}
 	</main>
 	<footer class="w-full p-4 bg-surface-100">
