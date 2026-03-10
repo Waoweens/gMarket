@@ -3,7 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { AppBar, Menu, Portal } from '@skeletonlabs/skeleton-svelte';
 	import { resolve } from '$app/paths';
-	import { BellIcon, CircleUserIcon, LogOutIcon, MailIcon, SearchIcon, ShoppingCartIcon, UserIcon } from '@lucide/svelte';
+	import { BellIcon, CircleUserIcon, LogOutIcon, MailIcon, SearchIcon, ShoppingCartIcon } from '@lucide/svelte';
 	import { enhance } from '$app/forms';
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 
@@ -28,11 +28,11 @@
 					</div>
 				</form>
 			</AppBar.Headline>
-			<AppBar.Trail class="flex justify-end pr-2">
+			<AppBar.Trail class="flex justify-end pr-2 items-center gap-0">
 				{#if data.user}
 					<Menu>
-						<Menu.Trigger class="btn-icon btn-icon-lg hover:preset-tonal data-[state=open]:preset-tonal">
-							<ShoppingCartIcon size={24} />
+						<Menu.Trigger class="btn-icon hover:preset-tonal data-[state=open]:preset-tonal">
+							<span><ShoppingCartIcon /></span>
 						</Menu.Trigger>
 						<Portal>
 							<Menu.Positioner>
@@ -43,8 +43,8 @@
 						</Portal>
 					</Menu>
 					<Menu>
-						<Menu.Trigger class="btn-icon btn-icon-lg hover:preset-tonal data-[state=open]:preset-tonal">
-							<BellIcon size={24} />
+						<Menu.Trigger class="btn-icon hover:preset-tonal data-[state=open]:preset-tonal">
+							<span><BellIcon /></span>
 						</Menu.Trigger>
 						<Portal>
 							<Menu.Positioner>
@@ -55,8 +55,8 @@
 						</Portal>
 					</Menu>
 					<Menu>
-						<Menu.Trigger class="btn-icon btn-icon-lg hover:preset-tonal data-[state=open]:preset-tonal">
-							<MailIcon size={24} />
+						<Menu.Trigger class="btn-icon hover:preset-tonal data-[state=open]:preset-tonal">
+							<span><MailIcon /></span>
 						</Menu.Trigger>
 						<Portal>
 							<Menu.Positioner>
@@ -69,7 +69,7 @@
 					<Menu>
 						<Menu.Trigger class="btn hover:preset-tonal data-[state=open]:preset-tonal">
 							<CircleUserIcon size={24} />
-							<span class="text-lg">{data.user.username}</span>
+							<span class="">{data.user.username}</span>
 						</Menu.Trigger>
 						<Portal>
 							<Menu.Positioner>
@@ -78,7 +78,7 @@
 										{#snippet element(attributes)}
 											<a {...(attributes as HTMLAnchorAttributes)} href={resolve(`/profile/${data.user.id}`)}>
 												<Menu.ItemText class="flex items-center gap-2">
-													<UserIcon size={16} />
+													<CircleUserIcon size={20} />
 													<span>Profile</span>
 												</Menu.ItemText>
 											</a>
@@ -89,7 +89,7 @@
 											<form class="contents" use:enhance method="post" action="/auth/logout">
 												<button {...(attributes as HTMLButtonAttributes)} type="submit">
 													<Menu.ItemText class="flex items-center gap-2">
-														<LogOutIcon size={16} />
+														<LogOutIcon size={20} />
 														<span>Log out</span>
 													</Menu.ItemText>
 												</button>
