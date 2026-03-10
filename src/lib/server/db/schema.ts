@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm';
 import { pgTable, text, timestamp, bigint } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
@@ -22,5 +23,23 @@ export const sessions = pgTable('sessions', {
 	}).notNull()
 });
 
+export const products = pgTable('products', {
+	id: bigint({ mode: 'bigint' }).primaryKey(),
+	userId: bigint({ mode: 'bigint' })
+		.notNull()
+		.references(() => users.id, {
+			onDelete: 'cascade'
+		}),
+	title: text().notNull(),
+	description: text(),
+	imageUrl: text(),
+	price: bigint({ mode: 'bigint' }).notNull(),
+	createdAt: timestamp({
+		withTimezone: true,
+		mode: 'date'
+	}).default(sql`now()`)
+});
+
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
+export type Product = typeof products.$inferSelect;
