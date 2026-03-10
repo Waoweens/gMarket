@@ -42,12 +42,12 @@ export const actions = {
 		await db.insert(users).values({
 			id: userId,
 			username,
-			password_hash: passwordHash
+			passwordHash: passwordHash
 		});
 
 		const token = generateSessionToken();
 		const session = await createSession(token, userId);
-		setSessionTokenCookie(cookies, token, session.expires_at);
+		setSessionTokenCookie(cookies, token, session.expiresAt);
 
 		return redirect(302, "/auth/redirect-root");
 	}

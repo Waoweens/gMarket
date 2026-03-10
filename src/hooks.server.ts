@@ -12,7 +12,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const { session, user } = await validateSession(token);
 	if (session !== null) {
-		setSessionTokenCookie(event.cookies, token, session.expires_at);
+		setSessionTokenCookie(event.cookies, token, session.expiresAt);
 	} else {
 		deleteSessionTokenCookie(event.cookies);
 	}

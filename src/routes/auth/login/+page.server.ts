@@ -22,7 +22,7 @@ export const actions = {
 		}
 
 		const user = result[0];
-		const valid = await verify(user.password_hash, password, {
+		const valid = await verify(user.passwordHash, password, {
 			memoryCost: 19456,
 			timeCost: 2,
 			outputLen: 32,
@@ -35,7 +35,7 @@ export const actions = {
 
 		const token = generateSessionToken();
 		const session = await createSession(token, user.id);
-		setSessionTokenCookie(cookies, token, session.expires_at);
+		setSessionTokenCookie(cookies, token, session.expiresAt);
 
 		return redirect(302, '/auth/redirect-root');
 	}

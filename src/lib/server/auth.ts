@@ -20,8 +20,8 @@ export async function createSession(token: string, userId: bigint): Promise<Sess
 	const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
 	const session: Session = {
 		id: sessionId,
-		user_id: userId,
-		expires_at: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30) // 30 days
+		userId: userId,
+		expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30) // 30 days
 	};
 	await db.insert(sessions).values(session).onConflictDoNothing();
 	return session;
@@ -32,7 +32,7 @@ export async function validateSession(token: string): Promise<SessionValidationR
 	const result = await db
 		.select({ user: users, session: sessions })
 		.from(sessions)
-		.innerJoin(users, eq(sessions.user_id, users.id))
+		.innerJoin(users, eq(sessions.userId, users.id))
 		.where(eq(sessions.id, sessionId));
 
 	if (result.length < 1) {
@@ -40,11 +40,11 @@ export async function validateSession(token: string): Promise<SessionValidationR
 	}
 
 	const { user, session } = result[0];
-	if (Date.now() >= session.expires_at.getTime() - 1000 * 60 * 60 * 24 * 15) { // 15 days
-		session.expires_at = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30); // 30 days
+	if (Date.now() >= session.expiresAt.getTime() - 1000 * 60 * 60 * 24 * 15) { // 15 days
+		session.expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30); // 30 days
 		await db
 			.update(sessions)
-			.set({ expires_at: session.expires_at })
+			.set({ expiresAt: session.expiresAt })
 			.where(eq(sessions.id, session.id));
 	}
 
@@ -56,7 +56,7 @@ export async function invalidateSession(sessionId: string): Promise<void> {
 }
 
 export async function invalidateAllSessions(userId: bigint): Promise<void> {
-	await db.delete(sessions).where(eq(sessions.user_id, userId));
+	await db.delete(sessions).where(eq(sessions.userId, userId));
 }
 
 export function setSessionTokenCookie(cookies: Cookies, token: string, expiresAt: Date): void {
