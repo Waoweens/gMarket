@@ -79,7 +79,7 @@
 						<Menu>
 							<Menu.Trigger class="btn hover:preset-tonal data-[state=open]:preset-tonal">
 								<CircleUserIcon size={24} />
-								<span class="">{data.user.username}</span>
+								<span class="">{data.user.displayName ?? data.user.username}</span>
 							</Menu.Trigger>
 							<Portal>
 								<Menu.Positioner class="z-20!">
@@ -88,8 +88,7 @@
 											{#snippet element(attributes)}
 												<a
 													{...attributes as HTMLAnchorAttributes}
-													href={resolve(`/profile/${data.user.id}`)}
-												>
+													href={resolve('/@[username]', { username: data.user!.username })}>
 													<Menu.ItemText class="flex items-center gap-2">
 														<CircleUserIcon size={20} />
 														<span>Profile</span>
