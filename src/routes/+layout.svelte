@@ -18,8 +18,8 @@
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-<div>
-	<header>
+<div class="flex flex-col">
+	<header class="sticky top-0 z-50">
 		<AppBar>
 			<AppBar.Toolbar class="grid-cols-[auto_1fr_auto]">
 				<AppBar.Lead class="pr-2 pl-2">
