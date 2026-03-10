@@ -14,6 +14,9 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+	
+	const __COMMIT_HASH__: string;
 }
+
 
 export {};

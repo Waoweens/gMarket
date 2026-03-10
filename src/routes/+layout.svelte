@@ -13,13 +13,16 @@
 	} from '@lucide/svelte';
 	import { enhance } from '$app/forms';
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
+	import { dev } from '$app/environment';
 
 	let { children, data } = $props();
+
+	const commit = __COMMIT_HASH__;
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-<div class="flex flex-col">
-	<header class="sticky top-0 z-50">
+<div class="flex flex-col w-full min-h-screen">
+	<header class="w-full sticky top-0 z-50">
 		<AppBar>
 			<AppBar.Toolbar class="grid-cols-[auto_1fr_auto]">
 				<AppBar.Lead class="pr-2 pl-2">
@@ -117,7 +120,10 @@
 			</AppBar.Toolbar>
 		</AppBar>
 	</header>
-	<main>
+	<main class="w-full grow">
 		{@render children()}
 	</main>
+	<footer class="w-full p-4 bg-surface-100">
+		<p>build: {dev ? 'development' : 'production'}@<a class="underline" href="https://github.com/Waoweens/tik-portfolio/commit/{commit}">{commit}</a></p>
+	</footer>
 </div>
