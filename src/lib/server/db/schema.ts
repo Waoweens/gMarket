@@ -3,7 +3,10 @@ import { pgTable, text, timestamp, bigint } from 'drizzle-orm/pg-core';
 export const users = pgTable('users', {
 	id: bigint({ mode: 'bigint' }).primaryKey(),
 	username: text().notNull(),
-	passwordHash: text().notNull()
+	passwordHash: text().notNull(),
+
+	displayName: text(),
+	bio: text()
 });
 
 export const sessions = pgTable('sessions', {

@@ -22,6 +22,13 @@
       "when": 1773049989766,
       "tag": "0002_broken_shaman",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1773112268190,
+      "tag": "0003_numerous_sage",
+      "breakpoints": true
     }
   ]
 }
