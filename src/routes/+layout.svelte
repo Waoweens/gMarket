@@ -122,7 +122,7 @@
 	<main class="w-full max-w-6xl grow items-center p-4">
 		{@render children()}
 	</main>
-	<footer class="w-full p-4 bg-surface-100">
+	<footer class="w-full p-4 preset-filled-surface-100-900">
 		<p>build: {dev ? 'development' : 'production'}@<a class="underline" href="https://github.com/Waoweens/tik-portfolio/commit/{commit}">{commit}</a></p>
 	</footer>
 </div>
