@@ -1,5 +1,5 @@
 import { db } from "$lib/server/db";
-import { asc, desc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import type { PageServerLoad } from "./$types";
 import { products } from "$lib/server/db/schema";
 
