@@ -21,7 +21,7 @@
 	<div class="grow flex flex-col gap-2">
 		<h1 class="font-bold text-3xl">{data.product.title}</h1>
 		<p class="text-xl font-bold">Rp {data.product.price.toLocaleString('id-ID')}</p>
-		<p>{data.product.description}</p>
+		<p class="whitespace-pre-line">{data.product.description}</p>
 		<a href={resolve('/@[username]/product/[productId]/edit', { username: data.profile.username, productId: data.product.id.toString() })} class="btn preset-filled w-max">
 			<PlusIcon size={16} />
 			<span>Edit Product</span>
