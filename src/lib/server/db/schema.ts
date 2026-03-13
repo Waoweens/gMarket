@@ -1,4 +1,4 @@
-import { sql } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
 import { pgTable, text, timestamp, bigint, boolean } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
@@ -9,6 +9,10 @@ export const users = pgTable('users', {
 	displayName: text(),
 	bio: text()
 });
+
+export const usersRelations = relations(users, ({ many }) => ({
+	products: many(products)
+}));
 
 export const sessions = pgTable('sessions', {
 	id: text().notNull().primaryKey(),
@@ -40,6 +44,13 @@ export const products = pgTable('products', {
 	}).default(sql`now()`).notNull(),
 	created: boolean().default(false).notNull()
 });
+
+export const productsRelations = relations(products, ({ one }) => ({
+	user: one(users, {
+		fields: [products.userId],
+		references: [users.id]
+	})
+}));
 
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
