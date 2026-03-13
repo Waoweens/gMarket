@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm';
-import { pgTable, text, timestamp, bigint } from 'drizzle-orm/pg-core';
+import { pgTable, text, timestamp, bigint, boolean } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
 	id: bigint({ mode: 'bigint' }).primaryKey(),
@@ -37,7 +37,8 @@ export const products = pgTable('products', {
 	createdAt: timestamp({
 		withTimezone: true,
 		mode: 'date'
-	}).default(sql`now()`)
+	}).default(sql`now()`).notNull(),
+	created: boolean().default(false).notNull()
 });
 
 export type User = typeof users.$inferSelect;

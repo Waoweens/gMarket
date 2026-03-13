@@ -29,6 +29,27 @@
       "when": 1773112268190,
       "tag": "0003_numerous_sage",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1773370765101,
+      "tag": "0004_boring_nick_fury",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1773373447338,
+      "tag": "0005_long_pride",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1773374600959,
+      "tag": "0006_modern_thunderbolts",
+      "breakpoints": true
     }
   ]
 }
