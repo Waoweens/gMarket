@@ -1,4 +1,4 @@
-import type { NewProduct, Product, User } from "./server/db/schema";
+import type { NewProduct, User } from "./server/db/schema";
 import SnowflakeGenerator from "./snowflake";
 
 // place files you want to import through the `$lib` alias in this folder.
