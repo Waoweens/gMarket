@@ -59,6 +59,7 @@ export const actions = {
 			const inputBuffer = Buffer.from(await image.arrayBuffer());
 			const outputBuffer = await sharp(inputBuffer, { failOn: 'none' })
 				.rotate() // auto-rotate based on EXIF data
+				.resize(1024, 1024, { fit: 'cover', position: 'center' })
 				.png({ compressionLevel: 9, adaptiveFiltering: true, force: true })
 				.toBuffer();
 			await writeFile(IMAGE_UPLOAD_PATH + `/${imageName}`, outputBuffer);
