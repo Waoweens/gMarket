@@ -5,8 +5,8 @@ import { IMAGE_UPLOAD_PATH, IMAGE_UPLOAD_URL } from '$env/static/private';
 import { db } from '$lib/server/db';
 import { products } from '$lib/server/db/schema';
 import { snowflake } from '$lib';
-import path from 'node:path';
 import { eq } from 'drizzle-orm';
+import sharp from 'sharp';
 
 export const load: PageServerLoad = async ({ locals, parent, params }) => {
 	const { profile } = await parent();
@@ -53,14 +53,17 @@ export const actions = {
 		const hasNewImage = image && image.size > 0;
 
 		const imageId = hasNewImage ? snowflake.generate() : null;
-		const imageName = hasNewImage ? `${userId}-${productId}-${imageId}${path.extname(image.name)}` : null;
+		const imageName = hasNewImage ? `${userId}-${productId}-${imageId}.png` : null;
 
 		if (hasNewImage) {
-			const buffer = Buffer.from(await image.arrayBuffer());
-			await writeFile(IMAGE_UPLOAD_PATH + `/${imageName}`, buffer);
+			const inputBuffer = Buffer.from(await image.arrayBuffer());
+			const outputBuffer = await sharp(inputBuffer, { failOn: 'none' })
+				.rotate() // auto-rotate based on EXIF data
+				.png({ compressionLevel: 9, adaptiveFiltering: true, force: true })
+				.toBuffer();
+			await writeFile(IMAGE_UPLOAD_PATH + `/${imageName}`, outputBuffer);
 		}
 
-		// check if product exists, if yes update, if no create new
 		const existingProduct = await db.query.products.findFirst({
 			where: eq(products.id, BigInt(productId))
 		});
@@ -72,7 +75,8 @@ export const actions = {
 					title,
 					description,
 					imageUrl: hasNewImage ? `${IMAGE_UPLOAD_URL}/${imageName}` : existingProduct.imageUrl,
-					price
+					price,
+					created: true
 				})
 				.where(eq(products.id, BigInt(productId)));
 		} else {
