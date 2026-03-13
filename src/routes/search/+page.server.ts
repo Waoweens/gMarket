@@ -2,12 +2,12 @@ import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
 import { and, desc, eq, sql } from 'drizzle-orm';
 import { products, users } from '$lib/server/db/schema';
-import { error } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ parent }) => {
 	const { query } = await parent();
 
-	if (!query) error(400, 'Query parameter is required');
+	if (!query) redirect(302, '/')
 
 	const q = query.trim();
 
@@ -61,8 +61,6 @@ export const load: PageServerLoad = async ({ parent }) => {
 			)
 			.orderBy(desc(rank), desc(products.createdAt));
 	});
-
-	console.log(results);
 
 	return {
 		results
