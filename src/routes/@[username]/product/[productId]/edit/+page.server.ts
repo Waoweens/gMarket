@@ -69,6 +69,10 @@ export const actions = {
 			where: eq(products.id, BigInt(productId))
 		});
 
+		if (!existingProduct?.imageUrl && !hasNewImage) {
+			return fail(400, { error: 'An image is required for the product.' });
+		}
+
 		if (existingProduct) {
 			await db
 				.update(products)

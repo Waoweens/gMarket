@@ -4,6 +4,16 @@
 	import type { PageProps } from './$types';
 
 	let { form, data }: PageProps = $props();
+
+	let imageSrc = $derived(data.editProduct?.imageUrl ?? '')
+
+	function previewImage(event: Event) {
+		const input = event.target as HTMLInputElement;
+		if (input.files && input.files[0]) {
+			const file = input.files[0];
+			imageSrc = URL.createObjectURL(file);
+		}
+	}
 </script>
 
 <form
@@ -18,14 +28,14 @@
 	<input type="hidden" name="productId" value={data.editProduct?.id} />
 
 	<fieldset class="flex w-full flex-col gap-4">
-		{#if data.editProduct?.imageUrl}
-		<div class="flex w-full">
-			<img src={data.editProduct?.imageUrl} alt="Cover" class="max-h-64 object-contain" />
-		</div>
+		{#if imageSrc}
+			<div class="flex max-w-64">
+				<img src={imageSrc} alt="Cover" class="w-full object-cover aspect-square" />
+			</div>
 		{/if}
 		<label class="label">
 			<span class="label-text">Image:</span>
-			<input class="input" type="file" name="image" accept="image/*" />
+			<input class="input" type="file" name="image" accept="image/*" onchange={previewImage} />
 		</label>
 
 		<label class="label">
