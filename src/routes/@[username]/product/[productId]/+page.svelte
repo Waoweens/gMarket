@@ -1,6 +1,6 @@
 <script lang="ts">
 	import UserCard from '$lib/components/UserCard.svelte';
-	import { MailIcon, PlusIcon } from '@lucide/svelte';
+	import { MailIcon, PencilIcon, PlusIcon } from '@lucide/svelte';
 	import type { PageProps } from './$types';
 	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
@@ -10,42 +10,44 @@
 	let quantity = $state(1);
 </script>
 
-<div class="flex w-full gap-4">
-	<div class="w-1/4">
+<div class="flex max-md:flex-col w-full gap-4">
+	<div class="md:max-w-72 max-md:max-w-96 self-center">
 		<img
 			src={data.product.imageUrl}
 			alt={data.product.title}
 			class="aspect-square w-full rounded-lg object-cover"
 		/>
 	</div>
-	<div class="grow flex flex-col gap-2">
+	<div class="md:grow flex flex-col gap-2">
 		<h1 class="font-bold text-3xl">{data.product.title}</h1>
 		<p class="text-xl font-bold">Rp {data.product.price.toLocaleString('id-ID')}</p>
 		<p class="whitespace-pre-line">{data.product.description}</p>
 		<a href={resolve('/@[username]/product/[productId]/edit', { username: data.profile.username, productId: data.product.id.toString() })} class="btn preset-filled w-max">
-			<PlusIcon size={16} />
+			<PencilIcon size={16} />
 			<span>Edit Product</span>
 		</a>
 	</div>
-	<div class="w-1/4 card preset-filled-surface-100-900 rounded-lg p-4 self-start">
-		<form use:enhance method="post" class="flex flex-col gap-2">
-			<input type="hidden" name="productId" value={data.product.id} />
-			<input type="hidden" name="userId" value={data.user?.id ?? ''} />
+	<div class="md:max-w-72 ">
+		<div class="w-full md:self-start card preset-filled-surface-100-900 rounded-lg p-4">
+			<form use:enhance method="post" class="flex flex-col gap-2">
+				<input type="hidden" name="productId" value={data.product.id} />
+				<input type="hidden" name="userId" value={data.user?.id ?? ''} />
 
-			<label class="label">
-				<span class="label-text">Quantity:</span>
-				<input class="input" type="number" name="quantity" min="1" bind:value={quantity} required />
-			</label>
-			<p class="text-lg">Subtotal: <span class="font-bold">Rp {(BigInt(quantity) * data.product.price).toLocaleString('id-ID')}</span></p>
-			<button class="btn preset-filled-primary-500" type="submit">
-				<PlusIcon size={16} />
-				<span>Add to cart</span>
+				<label class="label">
+					<span class="label-text">Quantity:</span>
+					<input class="input" type="number" pattern="[0-9]*" name="quantity" min="1" bind:value={quantity} required />
+				</label>
+				<p class="text-lg">Subtotal: <span class="font-bold">Rp {(BigInt(quantity) * data.product.price).toLocaleString('id-ID')}</span></p>
+				<button class="btn preset-filled-primary-500" type="submit">
+					<PlusIcon size={16} />
+					<span>Add to cart</span>
+				</button>
+			</form>
+			<button class="btn preset-filled w-full mt-4">
+				<MailIcon size={16} />
+				<span>Chat seller</span>
 			</button>
-		</form>
-		<button class="btn preset-filled w-full mt-4">
-			<MailIcon size={16} />
-			<span>Chat seller</span>
-		</button>
+		</div>
 	</div>
 </div>
 

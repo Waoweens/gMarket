@@ -5,7 +5,7 @@
 	let { product }: { product: Product & { user: User } } = $props();
 </script>
 
-<div class="flex w-56 card preset-filled-surface-100-900 p-4">
+<div class="w-56 card preset-filled-surface-100-900 p-4 flex max-sm:w-full">
 	<a
 		href={resolve('/@[username]/product/[productId]', {
 			username: product.user.username,

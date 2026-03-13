@@ -9,7 +9,7 @@
 </script>
 
 <div class="flex flex-col gap-4 card rounded-lg preset-filled-surface-100-900 p-4">
-	<div class="flex justify-between">
+	<div class="flex max-sm:flex-col sm:justify-between max-sm:gap-2">
 		<div class="flex items-center gap-2">
 			<Avatar class="size-24">
 				<Avatar.Fallback>
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="mr-4 flex flex-col justify-center gap-2">
+		<div class="mr-4 flex sm:flex-col sm:justify-center gap-2">
 			{#if profile.id === user?.id}
 				<a
 					class="btn preset-filled"

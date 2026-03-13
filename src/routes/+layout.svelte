@@ -14,6 +14,7 @@
 	import { enhance } from '$app/forms';
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 	import { dev } from '$app/environment';
+	import SearchBox from '$lib/components/SearchBox.svelte';
 
 	let { children, data } = $props();
 
@@ -25,26 +26,13 @@
 	<header class="w-full sticky top-0 z-10">
 		<AppBar>
 			<AppBar.Toolbar class="grid-cols-[auto_1fr_auto]">
-				<AppBar.Lead class="pr-2 pl-2">
+				<AppBar.Lead class="sm:pr-2 pl-2">
 					<a class="text-xl font-bold" href={resolve('/')}>gMarket</a>
 				</AppBar.Lead>
-				<AppBar.Headline class="flex justify-center">
-					<form class="w-full" method="get" action="/search">
-						<div class="input-group grid-cols-[1fr_auto]">
-							<input
-								class="ig-input"
-								type="text"
-								name="q"
-								placeholder="Search..."
-								value={data.query}
-							/>
-							<button class="ig-btn preset-filled" type="submit">
-								<SearchIcon size={16} />
-							</button>
-						</div>
-					</form>
+				<AppBar.Headline class="flex justify-center max-sm:hidden">
+					<SearchBox query={data.query} />
 				</AppBar.Headline>
-				<AppBar.Trail class="flex items-center justify-end gap-0 pr-2">
+				<AppBar.Trail class="flex items-center justify-end gap-0 sm:pr-2">
 					{#if data.user}
 						<Menu>
 							<Menu.Trigger class="btn-icon hover:preset-tonal data-[state=open]:preset-tonal">
@@ -77,7 +65,7 @@
 							</Portal>
 						</Menu>
 						<Menu>
-							<Menu.Trigger class="btn hover:preset-tonal data-[state=open]:preset-tonal">
+							<Menu.Trigger class="btn hover:preset-tonal data-[state=open]:preset-tonal pr-0">
 								<CircleUserIcon size={24} />
 								<span class="">{data.user.displayName ?? data.user.username}</span>
 							</Menu.Trigger>
@@ -117,6 +105,10 @@
 					{/if}
 				</AppBar.Trail>
 			</AppBar.Toolbar>
+
+			<AppBar.Headline class="sm:hidden">
+				<SearchBox query={data.query} />
+			</AppBar.Headline>
 		</AppBar>
 	</header>
 	<main class="w-full max-w-7xl grow items-center p-4">
