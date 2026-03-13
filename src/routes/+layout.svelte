@@ -15,6 +15,7 @@
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 	import { dev } from '$app/environment';
 	import SearchBox from '$lib/components/SearchBox.svelte';
+	import { page } from '$app/state';
 
 	let { children, data } = $props();
 
@@ -22,7 +23,7 @@
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-<div class="flex flex-col w-full min-h-screen items-center">
+<div class="flex flex-col w-full h-dvh min-h-0 items-center">
 	<header class="w-full sticky top-0 z-10">
 		<AppBar>
 			<AppBar.Toolbar class="grid-cols-[auto_1fr_auto]">
@@ -53,7 +54,7 @@
 									<Menu.Content></Menu.Content>
 								</Menu.Positioner>
 							</Portal>
-						</Menu>
+						</Menu> 
 						<Menu>
 							<Menu.Trigger class="btn-icon hover:preset-tonal data-[state=open]:preset-tonal">
 								<span><MailIcon /></span>
@@ -62,8 +63,11 @@
 								<Menu.Positioner class="z-20!">
 									<Menu.Content></Menu.Content>
 								</Menu.Positioner>
-							</Portal>
+							</Portal> 
 						</Menu> -->
+						<a class="btn-icon hover:preset-tonal" href={resolve('/messages')}>
+							<span><MailIcon /></span>
+						</a>
 						<Menu>
 							<Menu.Trigger class="btn hover:preset-tonal data-[state=open]:preset-tonal pr-0">
 								<CircleUserIcon size={24} />
@@ -111,7 +115,7 @@
 			</AppBar.Headline>
 		</AppBar>
 	</header>
-	<main class="w-full max-w-7xl grow items-center p-4">
+	<main class="w-full max-w-7xl grow p-4 flex flex-col" class:min-h-0={page.route.id === '/messages/@[username]'}>
 		{@render children()}
 	</main>
 	<footer class="w-full p-4 preset-filled-surface-100-900">

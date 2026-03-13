@@ -22,10 +22,10 @@
 				</p>
 				<p class="leading-none">@{profile?.username}</p>
 				<div class="mt-2 flex">
-					<button class="btn preset-filled">
+					<a href={resolve('/messages/@[username]', { username: profile.username })} class="btn preset-filled">
 						<MailIcon size={16} />
 						<span>Chat</span>
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>

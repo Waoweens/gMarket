@@ -45,10 +45,10 @@
 					<span>Add to cart</span>
 				</button> -->
 			</form>
-			<button class="btn preset-filled w-full mt-4">
+			<a href={resolve('/messages/@[username]', { username: data.profile.username })} class="btn preset-filled w-full mt-4">
 				<MailIcon size={16} />
 				<span>Chat seller</span>
-			</button>
+			</a>
 		</div>
 	</div>
 </div>
