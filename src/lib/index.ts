@@ -1,4 +1,4 @@
-import type { User } from "./server/db/schema";
+import type { NewProduct, Product, User } from "./server/db/schema";
 import SnowflakeGenerator from "./snowflake";
 
 // place files you want to import through the `$lib` alias in this folder.
@@ -11,5 +11,18 @@ export const emptyUser = (): User => {
 		passwordHash: '',
 		displayName: '',
 		bio: ''
+	}
+}
+
+export const emptyProduct = (productId: bigint, userId: bigint): NewProduct => {
+	return {
+		id: productId,
+		userId: userId,
+		title: '',
+		description: null,
+		imageUrl: null,
+		price: 0n,
+		// createdAt has default
+		// created has default
 	}
 }

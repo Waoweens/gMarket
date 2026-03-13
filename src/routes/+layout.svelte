@@ -119,7 +119,7 @@
 			</AppBar.Toolbar>
 		</AppBar>
 	</header>
-	<main class="w-full max-w-6xl grow items-center p-4">
+	<main class="w-full max-w-7xl grow items-center p-4">
 		{@render children()}
 	</main>
 	<footer class="w-full p-4 preset-filled-surface-100-900">
