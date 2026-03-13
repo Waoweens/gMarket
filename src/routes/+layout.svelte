@@ -34,7 +34,7 @@
 				</AppBar.Headline>
 				<AppBar.Trail class="flex items-center justify-end gap-0 sm:pr-2">
 					{#if data.user}
-						<Menu>
+						<!-- <Menu>
 							<Menu.Trigger class="btn-icon hover:preset-tonal data-[state=open]:preset-tonal">
 								<span><ShoppingCartIcon /></span>
 							</Menu.Trigger>
@@ -63,7 +63,7 @@
 									<Menu.Content></Menu.Content>
 								</Menu.Positioner>
 							</Portal>
-						</Menu>
+						</Menu> -->
 						<Menu>
 							<Menu.Trigger class="btn hover:preset-tonal data-[state=open]:preset-tonal pr-0">
 								<CircleUserIcon size={24} />
