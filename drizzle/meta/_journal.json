@@ -64,6 +64,13 @@
       "when": 1773382441981,
       "tag": "0008_trigram-products",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1773385753421,
+      "tag": "0009_living_lockjaw",
+      "breakpoints": true
     }
   ]
 }

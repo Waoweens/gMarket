@@ -52,7 +52,23 @@ export const productsRelations = relations(products, ({ one }) => ({
 	})
 }));
 
+export const messages = pgTable('messages', {
+	id: bigint({ mode: 'bigint' }).primaryKey(),
+	senderId: bigint({ mode: 'bigint' })
+		.notNull()
+		.references(() => users.id),
+	receiverId: bigint({ mode: 'bigint' })
+		.notNull()
+		.references(() => users.id),
+	content: text().notNull(),
+	createdAt: timestamp({
+		withTimezone: true,
+		mode: 'date'
+	}).default(sql`now()`).notNull()
+});
+
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
 export type Product = typeof products.$inferSelect;
 export type NewProduct = typeof products.$inferInsert;
+export type Message = typeof messages.$inferSelect;
