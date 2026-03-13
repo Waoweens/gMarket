@@ -4,6 +4,7 @@ import { sha256 } from '@oslojs/crypto/sha2';
 import { db } from './db';
 import { eq } from 'drizzle-orm';
 import type { Cookies } from '@sveltejs/kit';
+import { dev } from '$app/environment';
 
 export type SessionValidationResult =
 	| { session: Session; user: User }
@@ -63,6 +64,7 @@ export function setSessionTokenCookie(cookies: Cookies, token: string, expiresAt
 	cookies.set('session', token, {
 		httpOnly: true,
 		sameSite: 'lax',
+		secure: !dev,
 		expires: expiresAt,
 		path: '/'
 	});
@@ -72,6 +74,7 @@ export function deleteSessionTokenCookie(cookies: Cookies): void {
 	cookies.set('session', '', {
 		httpOnly: true,
 		sameSite: 'lax',
+		secure: !dev,
 		maxAge: 0,
 		path: '/'
 	});
