@@ -124,5 +124,6 @@
 	</main>
 	<footer class="w-full p-4 preset-filled-surface-100-900">
 		<p>build: {dev ? 'development' : 'production'}@<a class="underline" href="https://github.com/Waoweens/gMarket/commit/{commit}">{commit}</a></p>
+		<noscript><p>JavaScript disabled. Some functionality may not work as expected.</p></noscript>
 	</footer>
 </div>
