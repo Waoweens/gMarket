@@ -50,6 +50,20 @@
       "when": 1773374600959,
       "tag": "0006_modern_thunderbolts",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1773382416182,
+      "tag": "0007_trigram-extension",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1773382441981,
+      "tag": "0008_trigram-products",
+      "breakpoints": true
     }
   ]
 }
